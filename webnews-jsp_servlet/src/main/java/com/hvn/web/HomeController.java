@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.hvn.model.NewModel;
 import com.hvn.service.ICategoryService;
-import com.hvn.service.INewService;
 
 @WebServlet(urlPatterns = {"/trang-chu"})
 public class HomeController extends HttpServlet{

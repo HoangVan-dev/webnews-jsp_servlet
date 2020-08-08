@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.hvn.model.CategoryModel;
-import com.hvn.model.NewModel;
 
 public class CategoryMapper implements RowMapper<CategoryModel> {
 

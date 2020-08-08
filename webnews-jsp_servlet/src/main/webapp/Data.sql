@@ -88,4 +88,26 @@ select *  from news;
 
 
 
+/ postman data
+
+{
+    "title" : "Bài viết d",
+    "content" : "bai viet n",
+    "thumbnail": "Khong co",
+    "shortDescription" : "bai viet n",
+    "categoryId": 3
+}
+
+{
+    "title" : "Bài viết 4",
+    "content" : "bai viet 4",
+    "thumbnail": "Khong co",
+    "shortDescription" : "bai viet 4",
+    "categoryId": 1,
+    "id": 9
+}
+
+
+
+
 
