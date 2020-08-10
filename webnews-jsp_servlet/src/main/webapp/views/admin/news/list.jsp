@@ -7,7 +7,7 @@
 <title>Danh sách bài viết</title>
 </head>
 <body>
-	<form action='<c:url value="/admin-new" id="formSubmit" method="get"/>' >
+	<form action='<c:url value="/admin-new"/>' id="formSubmit" method="get" >
 		<div class="main-content">
 	    <div class="main-content-inner">
 	        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
@@ -43,6 +43,8 @@
 										</tbody>
 									</table>
 									  <ul class="pagination" id="pagination"></ul>
+									  <input type="hidden" value="" id="page" name="page"/>
+									  <input type="hidden" value="" id="maxPageItem" name="maxPageItem"/>
 								</div>
 							</div>
 						</div>
@@ -53,15 +55,20 @@
 	</div><!-- /.main-content -->
 </form>
 <script type="text/javascript">
+    var currentPages = ${model.page}
+    var totalPages = ${model.totalPage}
+    var visiblePages = ${model.maxPageItem}
     $(function () {
         window.pagObj = $('#pagination').twbsPagination({
-            totalPages: 24,
-            visiblePages: 6,
+            totalPages: totalPages,
+            visiblePages: 2,
+            startPage: currentPages,
             onPageClick: function (event, page) {
-                console.info(page + ' (from options)');
+                //console.info(page + ' (from options)');
+                
+                $('#page').val(page);
+                $('#formSubmit').submit();
             }
-        }).on('page', function (event, page) {
-            console.info(page + ' (from event listening)');
         });
     });
 </script>
