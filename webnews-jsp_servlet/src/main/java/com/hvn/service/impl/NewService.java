@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import com.hvn.dao.INewDAO;
 import com.hvn.model.NewModel;
+import com.hvn.paging.Pageble;
 import com.hvn.service.INewService;
 
 public class NewService implements INewService {
@@ -49,8 +50,13 @@ public class NewService implements INewService {
 	}
 
 	@Override
-	public List<NewModel> findAll() {
-		return newDao.findAll();
+	public List<NewModel> findAll(Pageble pageble) {
+		return newDao.findAll(pageble);
+	}
+
+	@Override
+	public int getTotalItem() {
+		return newDao.getTotalItem();
 	}
 
 }

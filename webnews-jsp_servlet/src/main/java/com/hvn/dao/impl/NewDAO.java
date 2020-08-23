@@ -1,10 +1,12 @@
 package com.hvn.dao.impl;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 import com.hvn.dao.INewDAO;
 import com.hvn.mapper.NewMapper;
 import com.hvn.model.NewModel;
+import com.hvn.paging.Pageble;
 
 public class NewDAO extends AbstractDAO<NewModel> implements INewDAO {
 
@@ -51,9 +53,25 @@ public class NewDAO extends AbstractDAO<NewModel> implements INewDAO {
 	}
 
 	@Override
-	public List<NewModel> findAll() {
+	public List<NewModel> findAll(Pageble pageble) {
 		String sql = "SELECT * FROM news";
-		return query(sql, new NewMapper());
+		if(pageble.getSorter() != null) {
+			sql +=" ORDER BY "+pageble.getSorter().getSortName()+ " " +pageble.getSorter().getSortBy()+" ";
+		}
+//		return query(sql, new NewMapper(), offset, limit);
+//		StringBuilder sql = new StringBuilder("SELECT * FROM news");
+		if(pageble.getOffset() != null && pageble.getLimit() != null) {
+//			sql.append("LIMIT ?, ?");
+			sql += " LIMIT "+ pageble.getOffset() +" , "+pageble.getLimit()+" "; 
+		}
+			return query(sql, new NewMapper());
+		
+	}
+
+	@Override
+	public int getTotalItem() {
+		String sql = "SELECT COUNT(*) FROM news";
+		return count(sql);
 	}
 
 }
